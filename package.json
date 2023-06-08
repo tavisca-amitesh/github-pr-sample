@@ -1,0 +1,25 @@
+{
+  "name": "github-pr",
+  "version": "1.0.0",
+  "description": "An sample project to add comment in github pr",
+  "main": "index.ts",
+  "scripts": {
+    "lint": "eslint . --fix",
+    "build": "tsc .",
+    "start": "ts-node src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tsconfig/node14": "^1.0.3",
+    "@types/node": "^20.2.5",
+    "@typescript-eslint/eslint-plugin": "^5.59.9",
+    "@typescript-eslint/parser": "^5.59.9",
+    "eslint": "^8.42.0",
+    "octokit": "^2.0.19",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.3"
+  }
+}

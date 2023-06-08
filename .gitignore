@@ -32,6 +32,10 @@ coverage
 # Bower dependency directory (https://bower.io/)
 bower_components
 
+github-token.json
+.secrets.baseline
+.pre-commit-config.yaml
+
 # node-waf configuration
 .lock-wscript
 

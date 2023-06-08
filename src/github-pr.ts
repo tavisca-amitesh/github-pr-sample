@@ -1,4 +1,6 @@
 import { Octokit } from "octokit";
+import fs from 'fs';
+import path from 'path';
 
 const tokenData = require('./github-token');
 
@@ -11,6 +13,14 @@ interface IChangedFilesArgs {
   repo: string,
   pullNumber: number
 }
+
+function getCommentData(){
+  const filePath = path.resolve(__dirname, './../markdowns/sample-report-comment.md');
+  // console.log(filePath);
+  const fileData = fs.readFileSync(filePath, 'utf-8');
+  return fileData;
+}
+
 export async function getChangedFiles({owner, repo, pullNumber}: IChangedFilesArgs): Promise<Array<string>> {
   let filesChanged: Array<string> = []
 
@@ -48,7 +58,10 @@ export async function commentIfDataFilesChanged({owner, repo, pullNumber}: IChan
 
   try {
     let commentMessage = `It looks like you changed a data file. These files are auto-generated. \n\nYou must revert any changes to data files before your pull request will be reviewed.`;
-        commentMessage = 'Test comment message added at ' + (new Date().toISOString());
+        commentMessage = '**Test comment** message added at ' + (new Date().toISOString());
+        commentMessage = getCommentData() + '\n\n At - ' + (new Date().toISOString());
+
+        // console.log(getCommentData());
 
     const {data: comment} = await octokit.request("POST /repos/{owner}/{repo}/issues/{issue_number}/comments", {
       owner: owner,
